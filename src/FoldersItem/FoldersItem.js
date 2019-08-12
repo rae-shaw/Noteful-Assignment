@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import './FoldersItem.css';
 
 export default function FoldersItem(props){
-	const folderPath= props.folderIdPath
 
 	return(
 		<div>
 			<ul>
 				<li>
-					<Link to={folderPath}>
+					<Link to={props.folderIdPath}>
 						{props.name}
 					</Link>
 				</li>
