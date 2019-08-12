@@ -1,0 +1,8 @@
+.foldersBody {
+	margin: 1em;
+	padding: 1em 2em 2em 2em;
+}
+
+li {
+	display: inline-block;
+}
