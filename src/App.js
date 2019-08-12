@@ -30,14 +30,14 @@ class App extends React.Component {
           <h1>Noteful</h1>
         </header>
         <section className='sidebar'>
-         <Route exact path='/' component={FoldersMain}/>
-         <Route path='/folder/<with-a-folder-id-here>' component={FoldersMain}/>
-         <Route path='/note/<with-a-note-id-here>' component={FolderView}/>
+         <Route exact path='/' render={props =>(<FoldersMain info={this.state}/>)}/> 
+         <Route path='/folder/:folderId' component={FoldersMain}/>
+         <Route path='/note/:noteId' render={props=>(<FolderView pieceOfState={this.state}/>)}/>
         </section>
         <main className='main'>
-          <Route exact path='/' component={NotesMain}/>
-          <Route path='/folder/<with-a-folder-id-here>' component={NotesMain}/>
-          <Route path='/note/<with-a-note-id-here>' component={NoteView}/>
+          <Route exact path='/' render={props=>(<NotesMain notePieceOfState={this.state}/>)}/>
+          <Route path='/folder/folderId' component={NotesMain}/>
+          <Route path='/note/notId' component={NoteView}/>
         </main>
         
       </div>
