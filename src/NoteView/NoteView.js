@@ -15,17 +15,17 @@ export default class NoteView extends React.Component{
    			note.id === this.props.routerProps.match.params.noteId
  		)
  		console.log('params', this.props.routerProps.match.params.noteId)
- 		console.log('note variable', thisNote)
+ 		console.log('thisNote variable', thisNote)
 		return(
 			
 			<section>
 				<div>
 					<ul >
 						<li> 
-							
+							{thisNote.name}
 						</li>
 						<li>
-							
+							{thisNote.modified}
 						</li>
 						<li>
 							<button>Delete</button>
@@ -33,7 +33,7 @@ export default class NoteView extends React.Component{
 					</ul>
 				</div>
 				<p>
-					
+					{thisNote.content}
 				</p>	
 			</section>
 		);			

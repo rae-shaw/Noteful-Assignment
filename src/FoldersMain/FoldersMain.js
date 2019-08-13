@@ -4,6 +4,7 @@ import FoldersItem from '../FoldersItem/FoldersItem.js';
 
 export default function FoldersMain(props){
 	const countNotesForFolder = (notes, folderId) => notes.filter(note => note.folderId === folderId).length
+	//const filterNotesForFolder = (notes,folderId) =>notes.filter(notes=>note.folderId===folderId)
 	const folders = props.info.folders.map((folder, i) => {
 		const noteCount = countNotesForFolder(props.info.notes, folder.id)
 		const folderIdPath=`folder/${folder.id}`
