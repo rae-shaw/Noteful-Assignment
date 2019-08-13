@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import './FoldersItem.css';
 
 export default function FoldersItem(props){
-
+	const foldersPath= `/folder/${props.name}`
 	return(
 		<div>
 			<ul>
 				<li>
-					<Link to={props.folderIdPath}>
+					<Link to={foldersPath}>
 						{props.name}
 					</Link>
 				</li>
@@ -16,5 +16,6 @@ export default function FoldersItem(props){
 					{props.noteCount}
 				</li>
 			</ul>
-		</div>)
+		</div>
+	)
 }

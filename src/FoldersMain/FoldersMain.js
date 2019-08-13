@@ -8,7 +8,6 @@ export default function FoldersMain(props){
 		const noteCount = countNotesForFolder(props.info.notes, folder.id)
 		const folderIdPath=`folder/${folder.id}`
 		return (<FoldersItem{...folder} key={i} noteCount={noteCount} folderIdPath={folderIdPath} />)
-		console.log(noteCount, 'here is noteCount')
 	})
 	
 	
