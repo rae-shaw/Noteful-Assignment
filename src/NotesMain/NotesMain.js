@@ -19,11 +19,11 @@ export default function NotesMain(props){
 		);
 	}else{
 		console.log('props from NotesMain else', props)
-		console.log ('params folderID', props.routerProps.match.params.folderID)
+		console.log ('params folderId', props.routerProps.match.params.folderId)
 		const notesFiltered = props.info.notes.filter(notes =>
-			props.info.notes.folderID === props.routerProps.match.params.folderID)
+			props.info.notes.folderId === props.routerProps.match.params.folderId)
+		console.log ('notesFiltered', notesFiltered)
 		const notesToRender= notesFiltered.map((note,i) => (<NotesItem {...note} key={i} />))
-		console.log('notesToRender', notesToRender)
 		return(
 			<div className='body'>
 				<h1>woohoo</h1>
