@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function NotesItem(props){
 	const notePath = `/note/${props.id}`
-	console.log(notePath,'from notes')
+	
 	return(
 		<section className= 'NotesItemList'>
 			<ul >

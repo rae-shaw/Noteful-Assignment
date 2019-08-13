@@ -35,7 +35,7 @@ class App extends React.Component {
         <div className='mainSection'>
           <section className='sidebar'>
             <Switch>
-               <Route exact path='/' render={props =>(<FoldersMain info={this.state}/>)}/> 
+               <Route exact path='/' render={props =>(<FoldersMain routerProps={props} info={this.state}/>)}/> 
                <Route path='/folder/:folderId' render={props=>(<FoldersMain routerProps={props} propinfo={this.state}/>)} />
                <Route path='/note/:noteId' render={props=>(<FolderView routerProps={props} info={this.state}/>)}/>
                <Route component={NotFound} />
@@ -43,7 +43,7 @@ class App extends React.Component {
           </section>
           <main className='main'>
             <Switch>
-              <Route exact path='/' render={props=>(<NotesMain info={this.state}/>)}/>
+              <Route exact path='/' render={props=>(<NotesMain routerProps={props} info={this.state}/>)}/>
               <Route path='/folder/:folderId' render={props=>(<NotesMain routerProps={props} info={this.state}/>)}/>
               <Route path='/note/:noteId' render={props=>(<NoteView routerProps={props} info={this.state}/>)} />
               <Route component={NotFound} />

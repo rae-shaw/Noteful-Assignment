@@ -1,5 +1,6 @@
 import React from 'react';
 import './FolderView';
+import { Link } from 'react-router-dom';
 
 export default class FolderView extends React.Component{
 	render(){
@@ -14,7 +15,11 @@ export default class FolderView extends React.Component{
  		
 	return(
 			< >
-				<button>Go Back</button>
+				<button>
+					<Link to={`/`}>
+					Go Back
+					</Link>
+				</button>
 				<h1>{folderName.name}</h1>
 			</ >
 		);

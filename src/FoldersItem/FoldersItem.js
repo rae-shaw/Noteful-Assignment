@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import './FoldersItem.css';
 
 export default function FoldersItem(props){
-	const foldersPath= `/folder/${props.name}`
+	const foldersPath= `/folder/${props.id}`
+	console.log('folderspath', foldersPath)
 	return(
 		<div>
 			<ul>

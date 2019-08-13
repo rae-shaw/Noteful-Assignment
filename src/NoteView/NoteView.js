@@ -1,6 +1,6 @@
 import React from 'react';
 import './NoteView.css';
-//import { format } from 'date-fns';
+import { format } from 'date-fns';
 
 
 export default class NoteView extends React.Component{
@@ -25,7 +25,7 @@ export default class NoteView extends React.Component{
 							{thisNote.name}
 						</li>
 						<li>
-							{thisNote.modified}
+							Modified {format(thisNote.modified, 'Do MMM YYYY')}
 						</li>
 						<li>
 							<button>Delete</button>
