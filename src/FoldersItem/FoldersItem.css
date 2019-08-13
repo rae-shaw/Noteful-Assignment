@@ -1,0 +1,7 @@
+.folders-item{
+	background: black;
+}
+
+.folders-item::selected {
+	background: white;
+}

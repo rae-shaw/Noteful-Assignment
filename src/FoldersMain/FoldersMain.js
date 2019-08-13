@@ -3,15 +3,15 @@ import './FoldersMain.css';
 import FoldersItem from '../FoldersItem/FoldersItem.js';
 
 export default function FoldersMain(props){
-	if (props.routerProps.match.path === '/'){
-		const countNotesForFolder = (notes, folderId) => notes.filter(note => 
+	const countNotesForFolder = (notes, folderId) => notes.filter(note => 
 			note.folderId === folderId).length
+	if (props.routerProps.match.path === '/'){
+		
 		const folders = props.info.folders.map((folder, i) => {
 			const noteCount = countNotesForFolder(props.info.notes, folder.id)
 			const folderIdPath=`folder/${folder.id}`
 			return (<FoldersItem{...folder} key={i} noteCount={noteCount} folderIdPath={folderIdPath} />)
 		})
-		console.log('props from FoldersMain', props.routerProps.match.path)
 
 			return(
 				<div className='foldersBody'>

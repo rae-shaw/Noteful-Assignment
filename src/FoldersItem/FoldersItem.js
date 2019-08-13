@@ -9,7 +9,7 @@ export default function FoldersItem(props){
 		<div>
 			<ul>
 				<li>
-					<Link to={foldersPath}>
+					<Link className= 'folders-item' to={foldersPath}>
 						{props.name}
 					</Link>
 				</li>

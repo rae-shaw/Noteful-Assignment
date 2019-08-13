@@ -18,9 +18,6 @@ export default function NotesMain(props){
 			</div>
 		);
 	}else{
-		console.log ('props from NotesMain else', props.info.notes)
-		console.log('notes.folderID from NotesMain else', props.info.notes.folderId)
-		console.log ('params folderId', props.routerProps.match.params.folderId)
 		const notesFiltered = props.info.notes.filter(notes =>
 			notes.folderId === props.routerProps.match.params.folderId)
 		console.log ('notesFiltered', notesFiltered)

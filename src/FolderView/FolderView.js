@@ -24,4 +24,4 @@ export default class FolderView extends React.Component{
 			</ >
 		);
 	}
-}
+} 
