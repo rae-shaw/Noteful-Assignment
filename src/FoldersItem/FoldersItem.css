@@ -1,7 +1,7 @@
 .folders-item{
-	background: black;
+	background-color: white;
 }
 
-.folders-item::selected {
-	background: white;
+.folders-item:: selection {
+	background-color: black;
 }

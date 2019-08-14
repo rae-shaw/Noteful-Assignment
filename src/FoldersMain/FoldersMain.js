@@ -2,13 +2,14 @@ import React from 'react';
 import './FoldersMain.css';
 import FoldersItem from '../FoldersItem/FoldersItem.js';
 
-export default function FoldersMain(props){
+export default class FoldersMain extends React.Component {
+	render(){
 	const countNotesForFolder = (notes, folderId) => notes.filter(note => 
 			note.folderId === folderId).length
-	if (props.routerProps.match.path === '/'){
+	if (this.props.routerProps.match.path === '/'){
 		
-		const folders = props.info.folders.map((folder, i) => {
-			const noteCount = countNotesForFolder(props.info.notes, folder.id)
+		const folders = this.props.info.folders.map((folder, i) => {
+			const noteCount = countNotesForFolder(this.props.info.notes, folder.id)
 			const folderIdPath=`folder/${folder.id}`
 			return (<FoldersItem{...folder} key={i} noteCount={noteCount} folderIdPath={folderIdPath} />)
 		})
@@ -25,15 +26,15 @@ export default function FoldersMain(props){
 				</div>
 			);
 	}else{
-		console.log('props from FoldersMain else', props)
-		const folders = props.propinfo.folders.map((folder, i) => {
+		console.log('props from FoldersMain else', this.props)
+		const folders = this.props.propinfo.folders.map((folder, i) => {
 			const folderIdPath=`folder/${folder.id}`
 			return (<FoldersItem{...folder} key={i} folderIdPath={folderIdPath} />)
 		})
 			return(
 				<div className='foldersBody'>
 					<h1>All Folders Listed</h1>
-					<div>
+					<div >
 						{folders}
 					</div>	
 					<div>
@@ -42,4 +43,5 @@ export default function FoldersMain(props){
 				</div>
 			);
 	}
+}
 }
