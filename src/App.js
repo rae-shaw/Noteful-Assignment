@@ -8,7 +8,9 @@ import NotFound from './NotFound/NotFound.js';
 import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
 import './App.css';
-import FormFolder from './FormFolder/FormFolder.js'
+import FormFolder from './FormFolder/FormFolder.js';
+import FormNote from './FormNote/FormNote.js';
+import ErrorBoundary from './ErrorBoundary.js';
 
 class App extends React.Component {
   state ={ 
@@ -42,40 +44,66 @@ class App extends React.Component {
     });
   }
 
+  handleAddNote = note => {
+    this.setState({
+      notes: [
+        ...this.state.notes,
+        note
+      ]
+    })
+  }
+
+handleAddFolder = folder => {
+    this.setState({
+      folders: [
+        ...this.state.folders,
+        folder
+      ]
+    })
+  }
+
   render(){
     const contextValue ={
       notes: this.state.notes,
       folders: this.state.folders, 
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      addNote: this.handleAddNote,
+      addFolder: this.handleAddFolder
     }
 
     return (
       <APIContext.Provider value={contextValue}>
-        <div className='App'>
-          <header>
-            <h1>Noteful</h1>
-          </header>
-          <div className='mainSection'>
-            <section className='sidebar'>
-              <Switch>
-                 <Route exact path='/' component = {FoldersMain} /> 
-                 <Route path='folder/add-folder' component={FormFolder} />
-                 <Route path='/folder/:folderId' component = {FoldersMain} />
-                 <Route path='/note/:noteId' component = {FolderView}/>
-                 <Route component={NotFound} />
-              </Switch>
-            </section>
-            <main className='main'>
-              <Switch>
-                <Route exact path='/' component = {NotesMain} />
-                <Route path='folder/add-folder' component={FormFolder} />
-                <Route path='/folder/:folderId' component = {NotesMain}/>
-                <Route path='/note/:noteId' component = {NoteView} />
-                <Route component={NotFound} />
-              </Switch>
-            </main>
+        <ErrorBoundary>
+          <div className='App'>
+            <header>
+              <h1>Noteful</h1>
+            </header>
+            <div className='mainSection'>
+              <section className='sidebar'>
+                <Switch>
+                   <Route exact path='/' component = {FoldersMain} /> 
+                   <Route path='folder/add-folder' component={FormFolder} />
+                   <Route path='/folder/:folderId' component = {FoldersMain} />
+                    <Route path='/note/add-note' component = {FoldersMain}/>
+                    <Route path='/note/note/add-note' component = {FoldersMain}/>
+                   <Route path='/note/:noteId' component = {FolderView}/>
+                   <Route component={NotFound} />
+                </Switch>
+              </section>
+              <main className='main'>
+                <Switch>
+                  <Route exact path='/' component = {NotesMain} />
+                  <Route path='/folder/add-folder' component={FormFolder} />
+                  <Route path='/folder/:folderId' component = {NotesMain}/>
+                  <Route path='/note/add-note' component = {FormNote}/>
+                  <Route path='/note/note/add-note' component = {FormNote}/>
+                  <Route path='/note/:noteId' component = {NoteView} />
+                  <Route component={NotFound} />
+                </Switch>
+              </main>
+            </div>
           </div>
-        </div>
+        </ErrorBoundary>
       </APIContext.Provider>
     );
   }

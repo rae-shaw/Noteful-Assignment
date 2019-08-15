@@ -2,6 +2,7 @@ import React from 'react';
 import NotesItem from '../NotesItem/NotesItem.js';
 import './NotesMain.css';
 import APIContext from '../APIContext.js';
+import { Link} from 'react-router-dom';
 
 
 export default class NotesMain extends React.Component{
@@ -36,6 +37,11 @@ export default class NotesMain extends React.Component{
 						{notes}
 
 					</div>
+					<div>
+						<Link className= 'folders-item' to='note/add-note'>
+							Add Note
+						</Link>	
+					</div>
 				</div>
 			);
 		}else{
@@ -48,7 +54,13 @@ export default class NotesMain extends React.Component{
 					<div>
 						{notesToRender}
 					</div>
-				</div>)
+					<div>
+						<Link className= 'folders-item' to='note/add-note'>
+							Add Note
+						</Link>	
+					</div>
+				</div>
+			)
 		}
 	}
 }
