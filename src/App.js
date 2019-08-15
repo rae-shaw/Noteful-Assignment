@@ -5,7 +5,8 @@ import NotesMain from './NotesMain/NotesMain.js';
 import NoteView from './NoteView/NoteView.js';
 import FolderView from './FolderView/FolderView.js';
 import NotFound from './NotFound/NotFound.js';
-import STORE from './dummy-store.js';
+import APIconfigure from './APIconfigure.js';
+import APIContext from './APIContext.js';
 import './App.css';
 
 class App extends React.Component {
@@ -15,42 +16,64 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-        //setTimeout(() => this.setState(STORE), 600);
-        this.setState(STORE)
+        Promise.all([
+          fetch(`${APIconfigure.API_END}/folders`),
+          fetch(`${APIconfigure.API_END}/notes`)
+        ])
+        .then(([foldersResults, notesResults]) => {
+          if (!foldersResults.ok)
+            return foldersResults.json().then(e => Promise.reject(e));
+          if (!notesResults.ok)
+            return notesResults.json().then(e => Promise.reject(e));
+          return Promise.all([foldersResults.json(), notesResults.json()]);
+        })
+        .then(([folders, notes]) => {
+          this.setState({folders, notes});
+        })
+        .catch(error => {
+          console.error({error});
+        });
     }
 
-  renderViewRoutes(){
-
+  handleDeleteNote = noteId =>{
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteId)
+    });
   }
-  renderMainRoutes(){
 
-  }
   render(){
-    console.log('state from App', this.state)
+    const contextValue ={
+      notes: this.state.notes,
+      folders: this.state.folders, 
+      deleteNote: this.handleDeleteNote
+    }
+
     return (
-      <div className='App'>
-        <header>
-          <h1>Noteful</h1>
-        </header>
-        <div className='mainSection'>
-          <section className='sidebar'>
-            <Switch>
-               <Route exact path='/' render={props =>(<FoldersMain routerProps={props} info={this.state}/>)}/> 
-               <Route path='/folder/:folderId' render={props=>(<FoldersMain routerProps={props} propinfo={this.state}/>)} />
-               <Route path='/note/:noteId' render={props=>(<FolderView routerProps={props} info={this.state}/>)}/>
-               <Route component={NotFound} />
-            </Switch>
-          </section>
-          <main className='main'>
-            <Switch>
-              <Route exact path='/' render={props=>(<NotesMain routerProps={props} info={this.state}/>)}/>
-              <Route path='/folder/:folderId' render={props=>(<NotesMain routerProps={props} info={this.state}/>)}/>
-              <Route path='/note/:noteId' render={props=>(<NoteView routerProps={props} info={this.state}/>)} />
-              <Route component={NotFound} />
-            </Switch>
-          </main>
+      <APIContext.Provider value={contextValue}>
+        <div className='App'>
+          <header>
+            <h1>Noteful</h1>
+          </header>
+          <div className='mainSection'>
+            <section className='sidebar'>
+              <Switch>
+                 <Route exact path='/' component = {FoldersMain} /> 
+                 <Route path='/folder/:folderId' component = {FoldersMain} />
+                 <Route path='/note/:noteId' component = {FolderView}/>
+                 <Route component={NotFound} />
+              </Switch>
+            </section>
+            <main className='main'>
+              <Switch>
+                <Route exact path='/' component = {NotesMain} />
+                <Route path='/folder/:folderId' component = {NotesMain}/>
+                <Route path='/note/:noteId' component = {NoteView} />
+                <Route component={NotFound} />
+              </Switch>
+            </main>
+          </div>
         </div>
-      </div>
+      </APIContext.Provider>
     );
   }
 }

@@ -1,15 +1,24 @@
 import React from 'react';
 import './FoldersMain.css';
 import FoldersItem from '../FoldersItem/FoldersItem.js';
+import APIContext from '../APIContext.js';
 
 export default class FoldersMain extends React.Component {
+	static defaultProps ={
+		match: {
+			params: {}
+		}
+	}
+
+	static contextType = APIContext;
+
 	render(){
 	const countNotesForFolder = (notes, folderId) => notes.filter(note => 
 			note.folderId === folderId).length
-	if (this.props.routerProps.match.path === '/'){
+	if (this.props.match.path === '/'){
 		
-		const folders = this.props.info.folders.map((folder, i) => {
-			const noteCount = countNotesForFolder(this.props.info.notes, folder.id)
+		const folders = this.context.folders.map((folder, i) => {
+			const noteCount = countNotesForFolder(this.context.notes, folder.id)
 			const folderIdPath=`folder/${folder.id}`
 			return (<FoldersItem{...folder} key={i} noteCount={noteCount} folderIdPath={folderIdPath} />)
 		})
@@ -26,8 +35,7 @@ export default class FoldersMain extends React.Component {
 				</div>
 			);
 	}else{
-		console.log('props from FoldersMain else', this.props)
-		const folders = this.props.propinfo.folders.map((folder, i) => {
+		const folders = this.context.folders.map((folder, i) => {
 			const folderIdPath=`folder/${folder.id}`
 			return (<FoldersItem{...folder} key={i} folderIdPath={folderIdPath} />)
 		})

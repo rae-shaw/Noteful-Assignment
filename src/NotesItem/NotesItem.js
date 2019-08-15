@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function NotesItem(props){
 	const notePath = `/note/${props.id}`
-	
+	console.log('notesitem props!', props.onDeleteNote)
 	return(
 		<section className= 'NotesItemList'>
 			<ul >
@@ -18,7 +18,8 @@ export default function NotesItem(props){
 					Modified {format(props.modified, 'Do MMM YYYY')}
 				</li>
 				<li>
-					<button>Delete Note</button>
+					<button
+					onClick = {props.onDeleteNote}>Delete Note</button>
 				</li>
 			</ul>
 		</section>

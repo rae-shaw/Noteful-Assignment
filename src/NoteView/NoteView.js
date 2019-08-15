@@ -1,21 +1,28 @@
 import React from 'react';
 import './NoteView.css';
 import { format } from 'date-fns';
-
+import APIContext from '../APIContext.js';
 
 export default class NoteView extends React.Component{
-	//console.log(this.info.notes, 'props in noteview')
-	//console.log(this.match, 'props match from noteview')
 	
+	static defaultProps ={
+		match: {
+			params: {}
+		},
+		onDeleteNote: () => {},
+	}
+
+	static contextType = APIContext;
+
+	handleDeleteNote = noteId => {
+    	this.props.history.push(`/`)	
+  	}
 	
 	render(){
-		console.log('Router prop', this.props)
-		console.log('from state', this.props.info)
-		const thisNote = this.props.info.notes.find(note =>
-   			note.id === this.props.routerProps.match.params.noteId
+		console.log(this.props)
+		const thisNote = this.context.notes.find(note =>
+   			note.id === this.props.match.params.noteId
  		)
- 		console.log('params', this.props.routerProps.match.params.noteId)
- 		console.log('thisNote variable', thisNote)
 		return(
 			
 			<section>
@@ -28,7 +35,10 @@ export default class NoteView extends React.Component{
 							Modified {format(thisNote.modified, 'Do MMM YYYY')}
 						</li>
 						<li>
-							<button>Delete</button>
+							<button 
+								onClick={this.handleDeleteNote}>
+									Delete
+							</button>
 						</li>
 					</ul>
 				</div>
