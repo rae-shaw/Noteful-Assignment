@@ -3,6 +3,7 @@ import './NotesItem.css';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import DeleteNote from '../DeleteNote/DeleteNote.js';
+import PropTypes from 'prop-types';
 
 export default function NotesItem(props){
 	const notePath = `/note/${props.id}`
@@ -25,3 +26,7 @@ export default function NotesItem(props){
 		</section>
 	);
 }
+
+NotesItem.propTypes = {
+  value: PropTypes.number
+};

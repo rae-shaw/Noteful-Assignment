@@ -4,7 +4,6 @@ import APIconfigure from '../APIconfigure.js';
 import FormConfig from '../FormConfig/FormConfig';
 import ValidationError from '../ValidationError.js';
 import ErrorBoundary from '../ErrorBoundary.js';
-import PropTypes from 'prop-types';
 
 export default class FormFolder extends Component{
 	static defaultProps = {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FoldersItem.css';
+import PropTypes from 'prop-types';
 
 export default function FoldersItem(props){
 	const foldersPath= `/folder/${props.id}`
@@ -20,3 +21,7 @@ export default function FoldersItem(props){
 		</div>
 	)
 }
+
+FoldersItem.propTypes = {
+  value: PropTypes.number
+};
