@@ -8,6 +8,7 @@ import NotFound from './NotFound/NotFound.js';
 import APIconfigure from './APIconfigure.js';
 import APIContext from './APIContext.js';
 import './App.css';
+import FormFolder from './FormFolder/FormFolder.js'
 
 class App extends React.Component {
   state ={ 
@@ -58,6 +59,7 @@ class App extends React.Component {
             <section className='sidebar'>
               <Switch>
                  <Route exact path='/' component = {FoldersMain} /> 
+                 <Route path='folder/add-folder' component={FormFolder} />
                  <Route path='/folder/:folderId' component = {FoldersMain} />
                  <Route path='/note/:noteId' component = {FolderView}/>
                  <Route component={NotFound} />
@@ -66,6 +68,7 @@ class App extends React.Component {
             <main className='main'>
               <Switch>
                 <Route exact path='/' component = {NotesMain} />
+                <Route path='folder/add-folder' component={FormFolder} />
                 <Route path='/folder/:folderId' component = {NotesMain}/>
                 <Route path='/note/:noteId' component = {NoteView} />
                 <Route component={NotFound} />

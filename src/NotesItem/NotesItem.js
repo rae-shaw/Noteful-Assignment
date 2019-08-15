@@ -2,6 +2,7 @@ import React from 'react';
 import './NotesItem.css';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import DeleteNote from '../DeleteNote/DeleteNote.js';
 
 export default function NotesItem(props){
 	const notePath = `/note/${props.id}`
@@ -18,8 +19,7 @@ export default function NotesItem(props){
 					Modified {format(props.modified, 'Do MMM YYYY')}
 				</li>
 				<li>
-					<button
-					onClick = {props.onDeleteNote}>Delete Note</button>
+					<DeleteNote noteId = {props.id} />
 				</li>
 			</ul>
 		</section>

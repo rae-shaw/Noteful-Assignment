@@ -2,6 +2,7 @@ import React from 'react';
 import './FoldersMain.css';
 import FoldersItem from '../FoldersItem/FoldersItem.js';
 import APIContext from '../APIContext.js';
+import { Link} from 'react-router-dom';
 
 export default class FoldersMain extends React.Component {
 	static defaultProps ={
@@ -30,7 +31,9 @@ export default class FoldersMain extends React.Component {
 						{folders}
 					</div>	
 					<div>
-						<button>Add Folder</button>
+						<Link className= 'folders-item' to='folder/add-folder'>
+							Add Folder
+						</Link>		
 					</div>
 				</div>
 			);
@@ -46,7 +49,9 @@ export default class FoldersMain extends React.Component {
 						{folders}
 					</div>	
 					<div>
-						<button>Add Folder</button>
+						<Link className= 'folders-item' to='folder/add-folder'>
+							Add Folder
+						</Link>		
 					</div>
 				</div>
 			);

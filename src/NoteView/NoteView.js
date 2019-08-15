@@ -2,6 +2,8 @@ import React from 'react';
 import './NoteView.css';
 import { format } from 'date-fns';
 import APIContext from '../APIContext.js';
+import DeleteNote from '../DeleteNote/DeleteNote.js';
+
 
 export default class NoteView extends React.Component{
 	
@@ -9,14 +11,10 @@ export default class NoteView extends React.Component{
 		match: {
 			params: {}
 		},
-		onDeleteNote: () => {},
 	}
 
 	static contextType = APIContext;
 
-	handleDeleteNote = noteId => {
-    	this.props.history.push(`/`)	
-  	}
 	
 	render(){
 		console.log(this.props)
@@ -35,10 +33,7 @@ export default class NoteView extends React.Component{
 							Modified {format(thisNote.modified, 'Do MMM YYYY')}
 						</li>
 						<li>
-							<button 
-								onClick={this.handleDeleteNote}>
-									Delete
-							</button>
+							<DeleteNote noteId ={this.props.match.params.noteId} />
 						</li>
 					</ul>
 				</div>
