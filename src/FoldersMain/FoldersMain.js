@@ -31,16 +31,20 @@ export default class FoldersMain extends React.Component {
 						{folders}
 					</div>	
 					<div>
-						<Link className= 'folders-item' to='folder/add-folder'>
+						<Link className= 'folders-item' to='/folder/add-folder'>
 							Add Folder
 						</Link>		
 					</div>
 				</div>
 			);
 	}else{
+		const countNotesForFolder = (notes, folderId) => notes.filter(note => 
+			note.folderId === folderId).length
+		const currentFolder = this.props.match.params.folderId;
 		const folders = this.context.folders.map((folder, i) => {
+			const noteCount = countNotesForFolder(this.context.notes, folder.id)
 			const folderIdPath=`folder/${folder.id}`
-			return (<FoldersItem{...folder} key={i} folderIdPath={folderIdPath} />)
+			return (<FoldersItem{...folder} noteCount ={noteCount} highlighted = {currentFolder === folder.id} key={i} folderIdPath={folderIdPath} />)
 		})
 			return(
 				<div className='foldersBody'>
@@ -49,7 +53,7 @@ export default class FoldersMain extends React.Component {
 						{folders}
 					</div>	
 					<div>
-						<Link className= 'folders-item' to='folder/add-folder'>
+						<Link className= 'folders-item' to='/folder/add-folder'>
 							Add Folder
 						</Link>		
 					</div>

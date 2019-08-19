@@ -38,7 +38,7 @@ export default class NotesMain extends React.Component{
 
 					</div>
 					<div>
-						<Link className= 'folders-item' to='note/add-note'>
+						<Link className= 'folders-item' to='/note/add-note'>
 							Add Note
 						</Link>	
 					</div>
@@ -55,7 +55,7 @@ export default class NotesMain extends React.Component{
 						{notesToRender}
 					</div>
 					<div>
-						<Link className= 'folders-item' to='note/add-note'>
+						<Link className= 'folders-item' to='/note/add-note'>
 							Add Note
 						</Link>	
 					</div>

@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 
 export default function FoldersItem(props){
 	const foldersPath= `/folder/${props.id}`
-	console.log('folderspath', foldersPath)
+	const className = 'folders-item' + (props.highlighted ? ' highlighted' : '');
+	console.log('highlighted', props.highlighted)
 	return(
 		<div>
 			<ul>
 				<li>
-					<Link className= 'folders-item' to={foldersPath}>
+					<Link className= {className} to={foldersPath}>
 						{props.name}
 					</Link>
 				</li>
