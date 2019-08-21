@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FoldersMain from './FoldersMain/FoldersMain.js';
 import NotesMain from './NotesMain/NotesMain.js';
 import NoteView from './NoteView/NoteView.js';
@@ -76,7 +77,11 @@ handleAddFolder = folder => {
         <ErrorBoundary>
           <div className='App'>
             <header>
-              <h1>Noteful</h1>
+              <h1>
+              <Link to = '/'>
+              Noteful
+              </Link>
+              </h1>
             </header>
             <div className='mainSection'>
               <section className='sidebar'>
