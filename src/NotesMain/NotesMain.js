@@ -28,7 +28,7 @@ export default class NotesMain extends React.Component{
 		console.log('handle delete note', this.onDeleteNote)
 		
 		if (this.props.match.path === '/'){
-			const notes = this.context.notes.map((note,i) => (<NotesItem {...note} key={i} />))
+			const notes = this.context.notes.map((note,i) => (<NotesItem {...note} key={note.id} />))
 
 			return(
 				<div className='body'>
