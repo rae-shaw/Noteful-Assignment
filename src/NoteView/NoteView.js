@@ -20,9 +20,11 @@ export default class NoteView extends React.Component{
 	
 	render(){
 		console.log(this.props)
+		console.log('notes context', this.context.notes)
 		const thisNote = this.context.notes.find(note =>
-   			note.id === this.props.match.params.noteId
+   			note.id === +this.props.match.params.noteId
  		)
+ 		console.log('noteName', thisNote.name)
 		return(
 			<ErrorBoundary>
 				<section>

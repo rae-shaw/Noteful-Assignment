@@ -46,7 +46,7 @@ export default class NotesMain extends React.Component{
 			);
 		}else{
 			const notesFiltered = this.context.notes.filter(notes =>
-				notes.folderId === this.props.match.params.folderId)
+				notes.folder_id === +this.props.match.params.folderId)
 			const notesToRender= notesFiltered.map((note,i) => (<NotesItem {...note} key={i} />))
 			return(
 				<div className='body'>

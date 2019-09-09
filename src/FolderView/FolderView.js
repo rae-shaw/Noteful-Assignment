@@ -15,15 +15,16 @@ export default class FolderView extends React.Component{
 
 	render(){
 		console.log('made it to FolderView!')
+		console.log('props!', this.props)
+ 		console.log('folderview context!', this.context)
 		const thisNote = this.context.notes.find(note =>
-   		note.id === this.props.match.params.noteId
+   		note.id === +this.props.match.params.noteId
  		)
 
  		const folderName = this.context.folders.find(folder=>
- 			folder.id=== thisNote.folderId)
+ 			folder.id=== thisNote.folder_id)
 
- 		console.log('folder props!', this.props)
- 		console.log('folderview context!', this.context)
+ 		
  		
 	return(
 			< >

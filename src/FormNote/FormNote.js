@@ -43,7 +43,7 @@ export default class FormNote extends Component{
     const newNote = {
       name: e.target['note-name'].value,
       content: e.target['note-content'].value,
-      folderId: e.target['note-folder-id'].value,
+      folder_id: e.target['note-folder-id'].value,
       modified: new Date(),
     }
     fetch(`${APIconfigure.API_END}/notes`, {

@@ -14,8 +14,8 @@ export default class FoldersMain extends React.Component {
 	static contextType = APIContext;
 
 	render(){
-	const countNotesForFolder = (notes, folderId) => notes.filter(note => 
-			note.folderId === folderId).length
+	const countNotesForFolder = (notes, folder_id) => notes.filter(note => 
+			note.folder_id === folder_id).length
 	if (this.props.match.path === '/'){
 		
 		const folders = this.context.folders.map((folder, i) => {
@@ -38,9 +38,9 @@ export default class FoldersMain extends React.Component {
 				</div>
 			);
 	}else{
-		const countNotesForFolder = (notes, folderId) => notes.filter(note => 
-			note.folderId === folderId).length
-		const currentFolder = this.props.match.params.folderId;
+		const countNotesForFolder = (notes, folder_id) => notes.filter(note => 
+			note.folder_id === folder_id).length
+		const currentFolder = this.props.match.params.folder_id;
 		const folders = this.context.folders.map((folder, i) => {
 			const noteCount = countNotesForFolder(this.context.notes, folder.id)
 			const folderIdPath=`folder/${folder.id}`
